@@ -4,6 +4,7 @@ import { WelcomePage } from './pages/WelcomePage';
 import { useFonts } from 'expo-font';
 import { coolors } from './colorsPalette';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import RecipePage from './pages/RecipePage';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,7 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         {
           fontsLoaded
-            ? < WelcomePage />
+            ? <RecipePage />
             : <ActivityIndicator size="large" color="#7B3F00" />
         }
         <StatusBar style="auto" />
