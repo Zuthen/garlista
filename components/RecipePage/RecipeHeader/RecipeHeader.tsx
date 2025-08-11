@@ -1,6 +1,9 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Select } from '../Select/Select'
+
+import { Select } from '../../custom/Select/Select'
+import { HeaderName } from '../HeaderName/HeaderName'
+import { NumberInput } from '../../custom/NumberInput/NumberInput'
 
 export default function RecipeHeader() {
 
@@ -15,28 +18,25 @@ export default function RecipeHeader() {
 
     return (
         <View style={styles.card}>
-            <TextInput style={styles.name} placeholder='Nazwa' multiline />
+            <HeaderName />
             <View style={styles.dishAmount}>
                 <Text style={[styles.amountData, { flex: 4, flexWrap: "nowrap", fontWeight: "700", fontSize: 22 }]}>Przepis na</Text>
-                <TextInput style={[styles.amountData, { minWidth: 30, flex: 1, alignItems: "flex-end", fontWeight: "700" }]} placeholder='ile?' keyboardType='numeric' />
-                <Select style={{ flex: 2, alignItems: "flex-start" }} textStyle={{ fontWeight: "700" }} options={amounts} defaultValue={{ label: 'porcji', value: 'porcji' }} />
+                <NumberInput placeholder='ile?' style={styles.numberInputStyle} />
+                <Select style={{ flex: 4, alignItems: "flex-start" }} textStyle={{ fontWeight: "700" }} options={amounts} defaultValue={{ label: 'porcji', value: 'porcji' }} />
             </View>
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    name: {
-        fontSize: 40,
-        flexWrap: "wrap",
-        fontFamily: 'AmaticSC-Bold',
-        alignSelf: "center",
-        maxHeight: 160
 
-    },
     dishAmount: {
+        flex: 1,
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "space-between",
+        gap: 30
     },
     amountData: {
         fontWeight: "600",
@@ -48,6 +48,14 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 25,
         borderBottomEndRadius: 25,
         padding: 15
-
+    },
+    numberInputStyle: {
+        flex: 3,
+        fontWeight: "700",
+        fontSize: 20,
+        textAlign: 'center',
+        flexShrink: 1,
+        minWidth: 50,
     }
+
 })
