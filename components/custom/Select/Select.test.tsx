@@ -44,4 +44,13 @@ describe("Select", () => {
         expect(sut.queryAllByLabelText("modal")).toHaveLength(0)
         sut.getByText(newValue)
     })
+
+    it(`should display edit icon on select focus out`, () => {
+        // Arrange
+        const defaultValue = testOptions[0]
+        const sut = render(<Select options={testOptions} defaultValue={defaultValue} />)
+        // Assert
+        expect(sut.queryByRole('image')).toBeDefined()
+    })
+
 })

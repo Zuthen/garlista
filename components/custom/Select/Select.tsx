@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Modal, Pressable, StyleProp, ViewStyle, TextStyle, ScrollView } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React, { useState } from 'react'
 
 
@@ -18,10 +19,13 @@ export function Select({ options, defaultValue, style, textStyle }: Props) {
     const [showOptions, setShowOptions] = useState(false)
     const [selectedValue, setSelectedValue] = useState<Option>(defaultValue)
 
-
     return (
         <View style={style}>
-            <Pressable onPress={() => setShowOptions(true)}><Text style={[styles.value, textStyle]}>{selectedValue.label}</Text></Pressable>
+            <Pressable onPress={() => setShowOptions(true)} style={styles.select}>
+                <Text style={[styles.value, textStyle]}>{selectedValue.label}</Text>
+                <FontAwesome name="pencil" size={18} color="grey" />
+            </Pressable>
+
 
             {showOptions &&
                 <Modal transparent>
@@ -52,7 +56,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Quicksand',
         fontSize: 20,
         alignSelf: "flex-start",
-        minWidth: 40
+        minWidth: 40,
+        padding: 5
     },
     modal: {
         marginHorizontal: 30,
@@ -80,5 +85,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         borderBottomWidth: 1,
         borderBottomColor: '#ddd',
+    },
+    select: {
+        flexDirection: 'row',
+        alignItems: "center"
     }
 })
