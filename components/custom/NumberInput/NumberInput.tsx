@@ -1,19 +1,21 @@
-import { StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
+import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from 'react-native'
 import React, { useState } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 type Props = {
     placeholder?: string,
-    style?: TextStyle
+    style?: StyleProp<TextStyle>,
+    iconStyle?: StyleProp<ViewStyle>,
+    iconSize?: number
 }
 
-export function NumberInput({ placeholder, style }: Props) {
+export function NumberInput({ placeholder, style, iconStyle, iconSize }: Props) {
     const [editMode, setEditMode] = useState(false)
     const [value, setValue] = useState("")
     return (
         <View style={styles.wrapper}>
             <TextInput
-                style={[style, { flex: 1, fontWeight: "700", textAlignVertical: "center", paddingVertical: 0 }]}
+                style={style}
                 placeholder={placeholder ? placeholder : ""}
                 placeholderTextColor="grey"
                 keyboardType="numeric"
@@ -22,7 +24,7 @@ export function NumberInput({ placeholder, style }: Props) {
                 value={value}
                 onChangeText={setValue}
             />
-            {!editMode && <FontAwesome name="pencil" size={18} color="grey" style={{ padding: 5 }} />}
+            {!editMode && <FontAwesome name="pencil" size={iconSize ? iconSize : 18} color="grey" style={iconStyle} />}
         </View>
     )
 }
@@ -31,8 +33,6 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         justifyContent: "center",
-        alignItems: "center",
         flexDirection: "row"
-    }
-
+    },
 })
