@@ -12,10 +12,12 @@ type Props = {
     options: Option[],
     defaultValue: Option,
     style?: StyleProp<ViewStyle>,
-    textStyle?: StyleProp<TextStyle>
+    textStyle?: StyleProp<TextStyle>,
+    iconStyle?: StyleProp<ViewStyle>,
+    iconSize?: number
 }
 
-export function Select({ options, defaultValue, style, textStyle }: Props) {
+export function Select({ options, defaultValue, style, textStyle, iconStyle, iconSize }: Props) {
     const [showOptions, setShowOptions] = useState(false)
     const [selectedValue, setSelectedValue] = useState<Option>(defaultValue)
 
@@ -23,7 +25,7 @@ export function Select({ options, defaultValue, style, textStyle }: Props) {
         <View style={style}>
             <Pressable onPress={() => setShowOptions(true)} style={styles.select}>
                 <Text style={[styles.value, textStyle]}>{selectedValue.label}</Text>
-                <FontAwesome name="pencil" size={18} color="grey" />
+                <FontAwesome name="pencil" size={iconSize ? iconSize : 18} color="grey" style={iconStyle} />
             </Pressable>
 
 

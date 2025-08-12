@@ -20,42 +20,48 @@ export default function RecipeHeader() {
         <View style={styles.card}>
             <HeaderName />
             <View style={styles.dishAmount}>
-                <Text style={[styles.amountData, { flex: 4, flexWrap: "nowrap", fontWeight: "700", fontSize: 22 }]}>Przepis na</Text>
-                <NumberInput placeholder='ile?' style={styles.numberInputStyle} />
-                <Select style={{ flex: 4, alignItems: "flex-start" }} textStyle={{ fontWeight: "700" }} options={amounts} defaultValue={{ label: 'porcji', value: 'porcji' }} />
+                <Text style={[styles.amountData, styles.recipeDetailsFont]}>Przepis na</Text>
+                <NumberInput placeholder="ile?" style={[styles.recipeDetailsFont, styles.amountData]} iconStyle={styles.icon} iconSize={styles.icon.fontSize} />
+                <Select
+                    style={[styles.amountData]}
+                    textStyle={styles.recipeDetailsFont}
+                    options={amounts}
+                    defaultValue={{ label: 'porcji', value: 'porcji' }}
+                    iconStyle={styles.icon}
+                    iconSize={styles.icon.fontSize}
+                />
             </View>
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-
+    card: {
+        backgroundColor: 'white',
+        borderBottomStartRadius: 25,
+        borderBottomEndRadius: 25,
+        padding: 15,
+    },
     dishAmount: {
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 30
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     amountData: {
-        fontWeight: "600",
+        minWidth: 60,
+        height: 60,
+        marginRight: 10,
+        justifyContent: "center",
+        textAlignVertical: "center",
+        textAlign: "right"
+    },
+    recipeDetailsFont: {
+        fontWeight: '600',
         fontFamily: 'Quicksand',
         fontSize: 20,
     },
-    card: {
-        backgroundColor: "white",
-        borderBottomStartRadius: 25,
-        borderBottomEndRadius: 25,
-        padding: 15
-    },
-    numberInputStyle: {
-        flex: 3,
-        fontWeight: "700",
-        fontSize: 20,
-        textAlign: 'center',
-        flexShrink: 1,
-        minWidth: 50,
+    icon: {
+        padding: 5,
+        alignSelf: "center",
+        fontSize: 18
     }
-
 })
