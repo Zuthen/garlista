@@ -4,6 +4,7 @@ import React from 'react'
 import { Select } from '../../custom/Select/Select'
 import { HeaderName } from '../HeaderName/HeaderName'
 import { NumberInput } from '../../custom/NumberInput/NumberInput'
+import { coolors } from '../../../colorsPalette'
 
 export default function RecipeHeader() {
 
@@ -21,7 +22,7 @@ export default function RecipeHeader() {
             <HeaderName />
             <View style={styles.dishAmount}>
                 <Text style={[styles.amountData, styles.recipeDetailsFont]}>Przepis na</Text>
-                <NumberInput placeholder="ile?" style={[styles.recipeDetailsFont, styles.amountData]} iconStyle={styles.icon} iconSize={styles.icon.fontSize} />
+                <NumberInput placeholder="ile?" textStyle={styles.recipeDetailsFont} style={styles.amountData} iconStyle={styles.icon} iconSize={styles.icon.fontSize} />
                 <Select
                     style={[styles.amountData]}
                     textStyle={styles.recipeDetailsFont}
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontFamily: 'Quicksand',
         fontSize: 20,
+        color: coolors.drabDarkBrown,
     },
     icon: {
         padding: 5,

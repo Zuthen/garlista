@@ -1,23 +1,29 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState, useRef } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export function HeaderName() {
-    const [value, setValue] = useState("")
-    const [editMode, setEditMode] = useState(false)
+    const [value, setValue] = useState("");
+    const [editMode, setEditMode] = useState(false);
+    const inputRef = useRef<TextInput>(null);
+
     return (
         <View style={styles.wrapper}>
-            <TextInput style={styles.name}
-                placeholder='Nazwa'
-                multiline
-                onFocus={() => setEditMode(true)}
-                onBlur={() => setEditMode(false)}
+            <TextInput
+                style={[styles.name, styles.input]}
                 value={value}
-                onChangeText={setValue}>
-            </TextInput>
-            {!editMode && <FontAwesome name="pencil" size={26} color="grey" style={{ padding: 10 }} />}
+                onChangeText={setValue}
+                placeholder='Nazwa'
+                onFocus={() => setEditMode(true)}
+                returnKeyType="done"
+                onSubmitEditing={() => { inputRef.current?.blur(); setEditMode(false) }}
+                ref={inputRef}
+            />
+            {!editMode && (
+                <FontAwesome name="pencil" size={26} color="grey" style={{ padding: 10 }} />
+            )}
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -28,9 +34,14 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         maxHeight: 160,
     },
+    input: {
+        borderBottomWidth: 1,
+        borderColor: '#ccc'
+    },
     wrapper: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        paddingHorizontal: 10,
     }
-})
+});
