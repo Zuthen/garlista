@@ -9,25 +9,16 @@ export function HeaderName() {
 
     return (
         <View style={styles.wrapper}>
-            {editMode ? (
-                <TextInput
-                    style={[styles.name, styles.input]}
-                    placeholder="Nazwa"
-                    value={value}
-                    onChangeText={setValue}
-                    returnKeyType="done"
-                    onSubmitEditing={() => inputRef.current?.blur()}
-                    onBlur={() => setEditMode(false)}
-                    autoFocus
-                    ref={inputRef}
-                />
-            ) : (
-                <TouchableOpacity onPress={() => setEditMode(true)} style={{ flex: 1 }}>
-                    <Text style={styles.name}>
-                        {value || "Nazwa"}
-                    </Text>
-                </TouchableOpacity>
-            )}
+            <TextInput
+                style={[styles.name, styles.input]}
+                value={value}
+                onChangeText={setValue}
+                placeholder='Nazwa'
+                onFocus={() => setEditMode(true)}
+                returnKeyType="done"
+                onSubmitEditing={() => { inputRef.current?.blur(); setEditMode(false) }}
+                ref={inputRef}
+            />
             {!editMode && (
                 <FontAwesome name="pencil" size={26} color="grey" style={{ padding: 10 }} />
             )}
